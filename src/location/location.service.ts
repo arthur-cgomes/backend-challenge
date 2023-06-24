@@ -89,4 +89,16 @@ export class LocationService {
             })
         ).save();
     }
+
+    public async getLocationById(locationId: string): Promise<Location> {
+        const location = await this.locationRepository.findOne({
+          where: { id: locationId },
+        });
+    
+        if (!location) {
+          throw new NotFoundException('Location not found');
+        }
+    
+        return location;
+      }
 }
