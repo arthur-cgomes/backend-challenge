@@ -58,13 +58,13 @@ export class LocationController {
 
     @Get()
     @ApiOperation({
-      summary: 'Retorna todas as localizações',
+        summary: 'Retorna todas as localizações',
     })
     @ApiQuery({ name: 'take', required: false })
     @ApiQuery({ name: 'skip', required: false })
     @ApiOkResponse({ type: GetAlllocationsResponseDto })
     async getAllLocations(@Query('take') take = 10, @Query('skip') skip = 0) {
-      return await this.locationService.getAllLocations(take, skip);
+        return await this.locationService.getAllLocations(take, skip);
     }
 
     @Delete(':locationId')

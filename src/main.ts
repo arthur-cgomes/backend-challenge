@@ -11,7 +11,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle(`API Places`)
-    .setDescription('Backend Challenge')
+    .setDescription('Backend Challenge ClubPetro')
     .setVersion(packageFile.version)
     .addBearerAuth()
     .addTag('Endpoints:')

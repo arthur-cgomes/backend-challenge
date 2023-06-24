@@ -15,7 +15,7 @@ export class LocationService {
     constructor(
         @InjectRepository(Location)
         private readonly locationRepository: Repository<Location>,
-    ) { }
+    ) {}
 
     public async createLocation(
         createLocationDto: CreateLocationDto,
