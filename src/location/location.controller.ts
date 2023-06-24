@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { LocationService } from './location.service';
 import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateLocationDto } from './dto/create-location.dto';
@@ -7,8 +7,7 @@ import { UpdateLocationDto } from './dto/update-location.dto';
 @ApiTags('Location')
 @Controller('locations')
 export class LocationController {
-    constructor(private readonly locationService: LocationService) { }
-
+    constructor(private readonly locationService: LocationService) {}
     @Post()
     @ApiOperation({
         summary: 'Cria uma nova localização',
@@ -41,16 +40,30 @@ export class LocationController {
             updateLocationDto,
         );
     }
-    
+
     @Get(':locationId')
     @ApiOperation({
-      summary: 'Retorna uma localização pelo Id',
+        summary: 'Retorna uma localização pelo Id',
     })
     //@ApiOkResponse({ type: LocationDto })
     @ApiNotFoundResponse({
-      description: 'Localização não encontrada',
+        description: 'Localização não encontrada',
     })
     async getLocationById(@Param('locationId') locationId: string) {
-      return await this.locationService.getLocationById(locationId);
+        return await this.locationService.getLocationById(locationId);
+    }
+
+    @Delete(':locationId')
+    @ApiOperation({
+        summary: 'Exclui uma localização',
+    })
+    //@ApiOkResponse({ type: DeleteResponseDto })
+    @ApiNotFoundResponse({
+        description: 'Localização não encontrada',
+    })
+    async deleteLocation(@Param('locationId') locationId: string) {
+        return {
+            message: await this.locationService.deleteLocation(locationId),
+        };
     }
 }
