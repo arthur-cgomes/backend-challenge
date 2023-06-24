@@ -15,7 +15,7 @@ export class LocationService {
     constructor(
         @InjectRepository(Location)
         private readonly locationRepository: Repository<Location>,
-    ) {}
+    ) { }
 
     public async createLocation(
         createLocationDto: CreateLocationDto,
@@ -100,6 +100,27 @@ export class LocationService {
         }
 
         return location;
+    }
+
+    public async getAllLocations(
+        take: number,
+        skip: number,
+    ): Promise<{
+        take: number;
+        skip: number;
+        locations: Location[];
+    }> {
+        const locations = await this.locationRepository.find({
+            order: { year: 'ASC', month: 'ASC' },
+            take,
+            skip,
+        });
+
+        return {
+            take,
+            skip,
+            locations,
+        };
     }
 
     public async deleteLocation(locationId: string): Promise<string> {

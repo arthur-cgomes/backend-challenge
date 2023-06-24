@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { LocationService } from './location.service';
-import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
 import { LocationDto } from './dto/location.dto';
 import { DeleteResponseDto } from './dto/delete-response.dto';
+import { GetAlllocationsResponseDto } from './dto/get-all-location-response.dto';
 
 @ApiTags('Location')
 @Controller('locations')
@@ -53,6 +54,17 @@ export class LocationController {
     })
     async getLocationById(@Param('locationId') locationId: string) {
         return await this.locationService.getLocationById(locationId);
+    }
+
+    @Get()
+    @ApiOperation({
+      summary: 'Retorna todas as localizações',
+    })
+    @ApiQuery({ name: 'take', required: false })
+    @ApiQuery({ name: 'skip', required: false })
+    @ApiOkResponse({ type: GetAlllocationsResponseDto })
+    async getAllLocations(@Query('take') take = 10, @Query('skip') skip = 0) {
+      return await this.locationService.getAllLocations(take, skip);
     }
 
     @Delete(':locationId')
