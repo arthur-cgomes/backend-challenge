@@ -3,6 +3,8 @@ import { LocationService } from './location.service';
 import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateLocationDto } from './dto/create-location.dto';
 import { UpdateLocationDto } from './dto/update-location.dto';
+import { LocationDto } from './dto/location.dto';
+import { DeleteResponseDto } from './dto/delete-response.dto';
 
 @ApiTags('Location')
 @Controller('locations')
@@ -12,7 +14,7 @@ export class LocationController {
     @ApiOperation({
         summary: 'Cria uma nova localização',
     })
-    //@ApiCreatedResponse({ type: LocationDto })
+    @ApiCreatedResponse({ type: LocationDto })
     @ApiConflictResponse({
         description: 'Local já existe',
     })
@@ -27,7 +29,7 @@ export class LocationController {
     @ApiOperation({
         summary: 'Atualiza a meta e a localização',
     })
-    //@ApiOkResponse({ type: LocationDto })
+    @ApiOkResponse({ type: LocationDto })
     @ApiNotFoundResponse({
         description: 'Localização não encontrada',
     })
@@ -45,7 +47,7 @@ export class LocationController {
     @ApiOperation({
         summary: 'Retorna uma localização pelo Id',
     })
-    //@ApiOkResponse({ type: LocationDto })
+    @ApiOkResponse({ type: LocationDto })
     @ApiNotFoundResponse({
         description: 'Localização não encontrada',
     })
@@ -57,7 +59,7 @@ export class LocationController {
     @ApiOperation({
         summary: 'Exclui uma localização',
     })
-    //@ApiOkResponse({ type: DeleteResponseDto })
+    @ApiOkResponse({ type: DeleteResponseDto })
     @ApiNotFoundResponse({
         description: 'Localização não encontrada',
     })
