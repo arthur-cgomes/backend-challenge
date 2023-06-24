@@ -2,11 +2,13 @@ import {
     Injectable,
     ConflictException,
     BadRequestException,
+    NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Location } from './entity/location.entity';
 import { CreateLocationDto } from './dto/create-location.dto';
+import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Injectable()
 export class LocationService {
@@ -49,5 +51,42 @@ export class LocationService {
         return await this.locationRepository
             .create({ ...createLocationDto })
             .save();
+    }
+
+    public async updateLocation(
+        locationId,
+        updateLocationDto: UpdateLocationDto,
+    ): Promise<Location> {
+        const location = await this.locationRepository.findOne({
+            where: { id: locationId },
+        });
+
+        if (!location) {
+            throw new NotFoundException('Location not found');
+        }
+
+        const currentDate = new Date();
+
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+
+        const userYear = updateLocationDto.year;
+        const userMonth = updateLocationDto.month;
+
+        if (
+            userYear < currentYear ||
+            (userYear == currentYear && userMonth < currentMonth)
+        ) {
+            throw new BadRequestException(
+                'Invalid date. Please provide a month in the future.',
+            );
+        }
+
+        return await (
+            await this.locationRepository.preload({
+                id: locationId,
+                ...updateLocationDto,
+            })
+        ).save();
     }
 }

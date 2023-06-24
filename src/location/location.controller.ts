@@ -1,12 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put } from '@nestjs/common';
 import { LocationService } from './location.service';
-import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiConflictResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateLocationDto } from './dto/create-location.dto';
+import { UpdateLocationDto } from './dto/update-location.dto';
 
 @ApiTags('Location')
 @Controller('locations')
 export class LocationController {
-    constructor(private readonly locationService: LocationService) {}
+    constructor(private readonly locationService: LocationService) { }
 
     @Post()
     @ApiOperation({
@@ -21,5 +22,23 @@ export class LocationController {
     })
     async createLocation(@Body() createLocationDto: CreateLocationDto) {
         return await this.locationService.createLocation(createLocationDto);
+    }
+
+    @Put(':locationId')
+    @ApiOperation({
+        summary: 'Atualiza a meta e a localização',
+    })
+    //@ApiOkResponse({ type: LocationDto })
+    @ApiNotFoundResponse({
+        description: 'Localização não encontrada',
+    })
+    async updateLocation(
+        @Param('locationId') locationId: string,
+        @Body() updateLocationDto: UpdateLocationDto,
+    ) {
+        return await this.locationService.updateLocation(
+            locationId,
+            updateLocationDto,
+        );
     }
 }
