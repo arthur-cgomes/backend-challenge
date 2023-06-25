@@ -1,11 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LocationService } from '../location.service';
-import { MockRepository, repositoryMockFactory } from '../../utils/mock/test.util';
+import {
+  MockRepository,
+  repositoryMockFactory,
+} from '../../utils/mock/test.util';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Location } from '../entity/location.entity';
 import { CreateLocationDto } from '../dto/create-location.dto';
-import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 import { UpdateLocationDto } from '../dto/update-location.dto';
 
 describe('LocationService', () => {
@@ -59,7 +66,7 @@ describe('LocationService', () => {
       expect(repositoryMock.create).toHaveBeenCalledWith({
         ...createLocationDto,
       });
-    })
+    });
 
     it('Should throw a ConflictException if location already exists', async () => {
       const error = new ConflictException('Location already exists');

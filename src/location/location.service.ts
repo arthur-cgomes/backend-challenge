@@ -1,8 +1,8 @@
 import {
-    Injectable,
-    ConflictException,
-    BadRequestException,
-    NotFoundException,
+  Injectable,
+  ConflictException,
+  BadRequestException,
+  NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -12,127 +12,127 @@ import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Injectable()
 export class LocationService {
-    constructor(
-        @InjectRepository(Location)
-        private readonly locationRepository: Repository<Location>,
-    ) {}
+  constructor(
+    @InjectRepository(Location)
+    private readonly locationRepository: Repository<Location>,
+  ) {}
 
-    public async createLocation(
-        createLocationDto: CreateLocationDto,
-    ): Promise<Location> {
-        const checkLocation = await this.locationRepository.findOne({
-            where: {
-                country: createLocationDto.country,
-                local: createLocationDto.local,
-            }
-        });
+  public async createLocation(
+    createLocationDto: CreateLocationDto,
+  ): Promise<Location> {
+    const checkLocation = await this.locationRepository.findOne({
+      where: {
+        country: createLocationDto.country,
+        local: createLocationDto.local,
+      },
+    });
 
-        if (checkLocation) {
-            throw new ConflictException('Location already exists');
-        }
-
-        const currentDate = new Date();
-
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth() + 1;
-
-        const userYear = createLocationDto.year;
-        const userMonth = createLocationDto.month;
-
-        if (
-            userYear < currentYear ||
-            (userYear == currentYear && userMonth < currentMonth)
-        ) {
-            throw new BadRequestException(
-                'Invalid date. Please provide a month in the future.',
-            );
-        }
-
-        return await this.locationRepository
-            .create({ ...createLocationDto })
-            .save();
+    if (checkLocation) {
+      throw new ConflictException('Location already exists');
     }
 
-    public async updateLocation(
-        locationId,
-        updateLocationDto: UpdateLocationDto,
-    ): Promise<Location> {
-        const location = await this.locationRepository.findOne({
-            where: { id: locationId },
-        });
+    const currentDate = new Date();
 
-        if (!location) {
-            throw new NotFoundException('Location not found');
-        }
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
 
-        const currentDate = new Date();
+    const userYear = createLocationDto.year;
+    const userMonth = createLocationDto.month;
 
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth() + 1;
-
-        const userYear = updateLocationDto.year;
-        const userMonth = updateLocationDto.month;
-
-        if (
-            userYear < currentYear ||
-            (userYear == currentYear && userMonth < currentMonth)
-        ) {
-            throw new BadRequestException(
-                'Invalid date. Please provide a month in the future.',
-            );
-        }
-
-        return await (
-            await this.locationRepository.preload({
-                id: locationId,
-                ...updateLocationDto,
-            })
-        ).save();
+    if (
+      userYear < currentYear ||
+      (userYear == currentYear && userMonth < currentMonth)
+    ) {
+      throw new BadRequestException(
+        'Invalid date. Please provide a month in the future.',
+      );
     }
 
-    public async getLocationById(locationId: string): Promise<Location> {
-        const location = await this.locationRepository.findOne({
-            where: { id: locationId },
-        });
+    return await this.locationRepository
+      .create({ ...createLocationDto })
+      .save();
+  }
 
-        if (!location) {
-            throw new NotFoundException('Location not found');
-        }
+  public async updateLocation(
+    locationId,
+    updateLocationDto: UpdateLocationDto,
+  ): Promise<Location> {
+    const location = await this.locationRepository.findOne({
+      where: { id: locationId },
+    });
 
-        return location;
+    if (!location) {
+      throw new NotFoundException('Location not found');
     }
 
-    public async getAllLocations(
-        take: number,
-        skip: number,
-    ): Promise<{
-        take: number;
-        skip: number;
-        locations: Location[];
-    }> {
-        const locations = await this.locationRepository.find({
-            order: { year: 'ASC', month: 'ASC' },
-            take,
-            skip,
-        });
+    const currentDate = new Date();
 
-        return {
-            take,
-            skip,
-            locations,
-        };
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+
+    const userYear = updateLocationDto.year;
+    const userMonth = updateLocationDto.month;
+
+    if (
+      userYear < currentYear ||
+      (userYear == currentYear && userMonth < currentMonth)
+    ) {
+      throw new BadRequestException(
+        'Invalid date. Please provide a month in the future.',
+      );
     }
 
-    public async deleteLocation(locationId: string): Promise<string> {
-        const deleteLocation = await this.locationRepository.findOne({
-            where: { id: locationId },
-        });
+    return await (
+      await this.locationRepository.preload({
+        id: locationId,
+        ...updateLocationDto,
+      })
+    ).save();
+  }
 
-        if (!deleteLocation) {
-            throw new NotFoundException('Location not found');
-        }
+  public async getLocationById(locationId: string): Promise<Location> {
+    const location = await this.locationRepository.findOne({
+      where: { id: locationId },
+    });
 
-        await this.locationRepository.remove(deleteLocation);
-        return 'Location deleted';
+    if (!location) {
+      throw new NotFoundException('Location not found');
     }
+
+    return location;
+  }
+
+  public async getAllLocations(
+    take: number,
+    skip: number,
+  ): Promise<{
+    take: number;
+    skip: number;
+    locations: Location[];
+  }> {
+    const locations = await this.locationRepository.find({
+      order: { year: 'ASC', month: 'ASC' },
+      take,
+      skip,
+    });
+
+    return {
+      take,
+      skip,
+      locations,
+    };
+  }
+
+  public async deleteLocation(locationId: string): Promise<string> {
+    const deleteLocation = await this.locationRepository.findOne({
+      where: { id: locationId },
+    });
+
+    if (!deleteLocation) {
+      throw new NotFoundException('Location not found');
+    }
+
+    await this.locationRepository.remove(deleteLocation);
+    return 'Location deleted';
+  }
 }
