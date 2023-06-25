@@ -5,7 +5,8 @@ import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Location } from '../entity/location.entity';
 import { CreateLocationDto } from '../dto/create-location.dto';
-import { BadRequestException, ConflictException } from '@nestjs/common';
+import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
+import { UpdateLocationDto } from '../dto/update-location.dto';
 
 describe('LocationService', () => {
   let service: LocationService;
@@ -86,6 +87,60 @@ describe('LocationService', () => {
     });
   });
 
+  describe('updateLocation', () => {
+    const updateLocationDto: UpdateLocationDto = {
+      local: 'local',
+      month: 1,
+      year: 2024,
+    };
+
+    it('Should sucessfully update a location', async () => {
+      repositoryMock.findOne = jest.fn().mockReturnValue(location);
+      repositoryMock.preload = jest
+        .fn()
+        .mockReturnValue({ save: () => location });
+
+      const result = await service.updateLocation(
+        location.id,
+        updateLocationDto,
+      );
+
+      expect(result).toStrictEqual(location);
+      expect(repositoryMock.preload).toHaveBeenCalledWith({
+        id: location.id,
+        ...updateLocationDto,
+      });
+    });
+
+    it('Should throw a NotFoundException if location does not exist', async () => {
+      const error = new NotFoundException('Location not found');
+
+      repositoryMock.findOne = jest.fn();
+
+      await expect(
+        service.updateLocation(location.id, updateLocationDto),
+      ).rejects.toStrictEqual(error);
+      expect(repositoryMock.preload).not.toHaveBeenCalled();
+    });
+
+    it('Should throw BadRequestException when date is in the past', async () => {
+      const error = new BadRequestException(
+        'Invalid date. Please provide a month in the future.',
+      );
+
+      repositoryMock.findOne = jest.fn().mockResolvedValue(location);
+      repositoryMock.preload = jest.fn();
+
+      await expect(
+        service.updateLocation(location.id, {
+          ...updateLocationDto,
+          year: 2020,
+          month: 1,
+        }),
+      ).rejects.toStrictEqual(error);
+      expect(repositoryMock.preload).not.toHaveBeenCalled();
+    });
+  });
 
   //Final
 });
