@@ -3,56 +3,73 @@
 <img src="./img/logo-clubpetro.png" style="margin-left: 100px"
      alt="Clubpetro" width="300">
 
-- [Descrição](#descrição)
-  - [O Desafio](#o-desafio)
-  - [Requisitos Obrigatórios](#requisitos-obrigatórios)
-  - [Bônus](#bônus)
-- [Submissão e Prazo de Entrega](#submissão-e-prazo-de-entrega)
+  - [Descrição](#descrição)
+  - [Instalação](#instalação)
+  - [Executando o projeto](#executando-o-projeto)
+  - [Testes](#testes)
+  - [Documentação](#documentação)
+  - [Suporte](#suporte)
+  - [Contato](#contato)
 
 ## Descrição
+O desafio se consiste em desenvolver uma API Rest para alimentar o frontend abaixo:
 
-Este desafio tem como objetivo avaliar as habilidades técnicas do candidato a vaga de desenvolvedor backend no Clubpetro.
+<img src="img/challenge.png">
 
-#### O Desafio
+Com base nas orientações do [desafio](https://github.com/ClubPetro/backend-challenge#requisitos-obrigat%C3%B3rios) a API foi desenvolvida com as seguintes tecnologias:
+Node.Js, Express, Typescript, NestJS, TypeORM, PostgreSQL, Jest.
 
-O desafio consiste em desenvolver uma API rest que permita o CRUD de lugares para se conhecer ao redor do mundo para alimentar o frontend que pode ser visto na imagem a seguir:
+## Instalação
 
-<img src="./img/challenge.png" alt="Desafio" >
+```bash
+$ npm install
+```
 
-Os dados a ser considerados são:
+## Executando o projeto
+Para execução do projeto é necessário configurar um banco de dados postgresql em sua máquina com as orientação do arquivo *env.example.yml*, presente na raiz do projeto.
 
-- País: O país escolhido;
-- Local: O local dentro do país escolhido;
-- Meta: O mês e o ano que o usuário pretende visitar o local;
-- Url da bandeira do país;
-- Data de criação do registro;
-- Data de atualização do registro.
+```bash
+# development
+$ npm run start
 
-#### Requisitos Obrigatórios
+# watch mode
+$ npm run start:dev
 
-> Requisitos que serão avaliados no desafio.
+# production mode
+$ npm run start:prod
+```
 
-- A API deverá ser desenvolvida com Node.js e Express;
-- Apenas o Local e a Meta poderão ser editados;
-- O mesmo local em determinado país não poderá ser adicionado de forma duplicada;
-- A listagem dos dados deverá ser ordenada de forma crescente pela meta;
-- O candidato deverá adicionar ao projeto uma explicação de como executar a aplicação.
+## Testes
 
-#### Bônus
+```bash
+# unit tests
+$ npm run test
 
-> Requisitos que não são obrigatórios mas podem te deixar em vantagem com relação aos outros candidatos.
+# test coverage
+$ npm run test:cov
+```
 
-- Utilização do framework [NestJS](https://nestjs.com/);
-- Typescript;
-- Testes automatizados;
-- [TypeORM](https://typeorm.io/#/);
-- [Docker](https://www.docker.com/);
-- Deploy para [Google Cloud Platform](https://cloud.google.com/) (ao criar conta é possível receber um bonus para teste).
+## Documentação
 
-### Submissão e Prazo de entrega
+Os endpoist foram documentados via Swagger, execute o projeto e verifique a documentação por [aqui](http://localhost:3000/api/#/). Disponível também pelo link: http://localhost:3000/api/#/.
 
-- O canditado deverá realizar um fork deste repositório e submeter o código no mesmo;
-- Em caso do deploy realizado, a url deverá ser adicionada no README;
-- O prazo de entrega para este desafio é de 2 (duas) semanas, contando a partir do dia em que o candidato recebeu o email com o link do repositório;
-- Ao finalizar o desafio, o candidato deverá submeter o desafio no questionário disponível na sua área de candidato na plataforma(https://menvievagas.com.br/vagas/fam%C3%8Dliapires/) do Processo Seletivo. É só clicar em RESPONDER no questionário e inserir o link do seu PR.
-Em caso de dúvidas, enviar um e-mail para jobs@clubpetro.com.br
+<img src="img/Endpoints-API-Places.png">
+
+As collections estão inseridas na pasta *collection*, presente na raiz do projeto.
+
+<div style="text-align: center;">
+  <img src="img/collection.png" class="centered-img" width="200">
+</div>
+
+## Suporte
+
+Entre em contato [aqui](https://github.com/arthur-cgomes) para suporte.
+
+## Contato
+
+- Desenvolvedor - [Arthur Gomes](https://github.com/arthur-cgomes)
+- Linkedin - [Perfil profissional](https://www.linkedin.com/in/arthur-gomes-701549193/)
+
+## License
+
+UNLICENSED
