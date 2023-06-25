@@ -142,5 +142,25 @@ describe('LocationService', () => {
     });
   });
 
+  describe('getLocationById', () => {
+    it('Should successfuly get a location by id', async () => {
+      repositoryMock.findOne = jest.fn().mockReturnValue(location);
+
+      const result = await service.getLocationById(location.id);
+
+      expect(result).toStrictEqual(location);
+    });
+
+    it('Should throw a NotFoundException if location does not exist', async () => {
+      const error = new NotFoundException('Location not found');
+
+      repositoryMock.findOne = jest.fn();
+
+      await expect(service.getLocationById(location.id)).rejects.toStrictEqual(
+        error,
+      );
+    });
+  });
+
   //Final
 });
