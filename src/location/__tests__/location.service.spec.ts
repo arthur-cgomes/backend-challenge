@@ -90,11 +90,11 @@ describe('LocationService', () => {
       const error = new BadRequestException(
         'Invalid date. Please provide a month in the future.',
       );
-    
+
       const currentDate = new Date();
       const currentYear = currentDate.getFullYear();
       const currentMonth = currentDate.getMonth() + 1;
-    
+
       const createLocationDto: CreateLocationDto = {
         country: 'country',
         local: 'local',
@@ -102,13 +102,13 @@ describe('LocationService', () => {
         year: currentYear,
         url: 'url',
       };
-    
+
       repositoryMock.findOne = jest.fn();
       repositoryMock.create = jest.fn().mockReturnValue({
         ...createLocationDto,
         save: jest.fn().mockRejectedValue(error),
       });
-    
+
       await expect(
         service.createLocation(createLocationDto),
       ).rejects.toThrowError(error);
@@ -168,6 +168,33 @@ describe('LocationService', () => {
         }),
       ).rejects.toStrictEqual(error);
       expect(repositoryMock.preload).not.toHaveBeenCalled();
+    });
+
+    it('Should throw a BadRequestException if date is in the past', async () => {
+      const error = new BadRequestException(
+        'Invalid date. Please provide a month in the future.',
+      );
+
+      const currentDate = new Date();
+      const currentYear = currentDate.getFullYear();
+      const currentMonth = currentDate.getMonth() + 1;
+
+      const updateLocationDto: UpdateLocationDto = {
+        local: 'local',
+        month: currentMonth,
+        year: currentYear,
+      };
+
+      repositoryMock.findOne = jest.fn().mockResolvedValue(location);
+      repositoryMock.preload = jest.fn().mockReturnValue({
+        ...updateLocationDto,
+        save: jest.fn().mockRejectedValue(error),
+      });
+
+      await expect(
+        service.updateLocation(location.id, updateLocationDto),
+      ).rejects.toThrowError(error);
+      expect(repositoryMock.preload).toHaveBeenCalledWith(updateLocationDto);
     });
   });
 
