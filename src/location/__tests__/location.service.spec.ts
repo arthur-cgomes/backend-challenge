@@ -162,5 +162,25 @@ describe('LocationService', () => {
     });
   });
 
+  describe('getAllLocations', () => {
+    it('Should sucessfully get all locations', async () => {
+      const locations: Location[] = [location];
+
+      repositoryMock.find = jest.fn().mockReturnValue(locations);
+
+      const take = 10;
+      const skip = 0;
+
+      const result = await service.getAllLocations(take, skip);
+
+      expect(repositoryMock.find).toHaveBeenCalledWith({
+        order: { month: 'ASC', year: 'ASC' },
+        take,
+        skip,
+      });
+      expect(result).toEqual({ take, skip, locations });
+    });
+  });
+
   //Final
 });
