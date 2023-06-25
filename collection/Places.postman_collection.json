@@ -1,0 +1,872 @@
+{
+	"info": {
+		"_postman_id": "dabe48b6-0a9d-45a6-9f55-70f425f6d496",
+		"name": "Places",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22405605"
+	},
+	"item": [
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Crete location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\":\"{{$randomCountry}}\",\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2024\",\r\n    \"url\":\"{{$randomUrl}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/locations",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"locations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"{{$randomCountry}}\",\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2024\",\r\n    \"url\":\"{{$randomUrl}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-+8CZcjgF/qJXp/qxG6QcP5+XbB0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:23:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"country\": \"Kuwait\",\n    \"local\": \"Lake Cruz\",\n    \"month\": \"01\",\n    \"year\": \"2024\",\n    \"url\": \"http://reuben.com\",\n    \"id\": \"b85aa1f6-6b9a-4193-8467-a5b12908cfe2\",\n    \"createdAt\": \"2023-06-02T22:23:57.144Z\",\n    \"updatedAt\": \"2023-06-02T22:23:57.144Z\",\n    \"active\": true\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"{{$randomCountry}}\",\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2023\",\r\n    \"url\":\"{{$randomUrl}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"68-4Cvs4prWnjIVvwbGK9NiAsg3/b8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:24:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Invalid date. Please provide a month in the future.\",\n    \"error\": \"Bad Request\"\n}"
+						},
+						{
+							"name": "409",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country\":\"Kuwait\",\r\n    \"local\":\"Lake Cruz\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2024\",\r\n    \"url\":\"{{$randomUrl}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-HiG+X3xQ7TwraGGb8fX8rBF6m7I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:24:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 409,\n    \"message\": \"Location already exists\",\n    \"error\": \"Conflict\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update location",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2024\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/locations/:locationId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "76c743f5-fe60-4728-93fd-d9772635cf39"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2024\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "569e70ec-2413-4f8c-8697-6e0f302ffe63"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "232"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e8-Omlwt71xuXwO+Rb5B7tm6qbeq84\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jun 2023 21:44:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"569e70ec-2413-4f8c-8697-6e0f302ffe63\",\n    \"createdAt\": \"2023-06-05T21:44:44.686Z\",\n    \"active\": true,\n    \"country\": \"Tonga\",\n    \"local\": \"Autumnville\",\n    \"month\": \"01\",\n    \"year\": \"2024\",\n    \"url\": \"https://nannie.info\",\n    \"updatedAt\": \"2023-06-05T21:44:54.375Z\"\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "569e70ec-2413-4f8c-8697-6e0f302ffe63"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"68-4Cvs4prWnjIVvwbGK9NiAsg3/b8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jun 2023 21:45:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Invalid date. Please provide a month in the future.\",\n    \"error\": \"Bad Request\"\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"local\":\"{{$randomCity}}\",\r\n    \"month\": \"01\",\r\n    \"year\": \"2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "569e70ec-2413-4f8c-8697-6e0f302ffe62"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-FiYn+fnHQdSUmOdGD6qdoUtvfEE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jun 2023 21:45:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"Location not found\",\n    \"error\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get location by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/locations/:locationId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "23329d4c-a38e-4b47-a078-500890d3f5ba"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "b85aa1f6-6b9a-4193-8467-a5b12908cfe2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-lPFNrerm9lNBaLYRCaq9x8Ejbt0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:27:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"b85aa1f6-6b9a-4193-8467-a5b12908cfe2\",\n    \"createdAt\": \"2023-06-02T22:23:57.144Z\",\n    \"active\": true,\n    \"country\": \"Kuwait\",\n    \"local\": \"Lake Cruz\",\n    \"month\": 1,\n    \"year\": 2024,\n    \"url\": \"http://reuben.com\"\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "b85aa1f6-6b9a-4193-8467-a5b12908cfe1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-FiYn+fnHQdSUmOdGD6qdoUtvfEE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:28:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"Location not found\",\n    \"error\": \"Not Found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/locations?take=10&skip=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"locations"
+							],
+							"query": [
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "skip",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations?take=10&skip=0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations"
+									],
+									"query": [
+										{
+											"key": "take",
+											"value": "10"
+										},
+										{
+											"key": "skip",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1981"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7bd-1In8lGJAA7dpqJ+KZRxpDlWNQ3E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:28:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"take\": \"10\",\n    \"skip\": \"0\",\n    \"locations\": [\n        {\n            \"id\": \"9017db41-e442-4c70-b92d-f1cc85ab7a97\",\n            \"createdAt\": \"2023-06-02T21:05:22.240Z\",\n            \"active\": true,\n            \"country\": \"Japan\",\n            \"local\": \"North Felicita\",\n            \"month\": 5,\n            \"year\": 2023,\n            \"url\": \"https://gerald.net\"\n        },\n        {\n            \"id\": \"84f12580-cb52-4fcc-8d36-1e3d6756c166\",\n            \"createdAt\": \"2023-06-02T21:10:55.970Z\",\n            \"active\": true,\n            \"country\": \"Costa Rica\",\n            \"local\": \"North Annabellside\",\n            \"month\": 5,\n            \"year\": 2023,\n            \"url\": \"http://jannie.name\"\n        },\n        {\n            \"id\": \"58b9967a-211d-48a2-97cf-ba0e46dbcbbe\",\n            \"createdAt\": \"2023-06-02T21:11:14.609Z\",\n            \"active\": true,\n            \"country\": \"Hong Kong\",\n            \"local\": \"Port Kassandra\",\n            \"month\": 5,\n            \"year\": 2023,\n            \"url\": \"https://darian.biz\"\n        },\n        {\n            \"id\": \"8fe64a39-e56f-41fd-8492-7cd565bdeff3\",\n            \"createdAt\": \"2023-06-02T21:12:42.439Z\",\n            \"active\": true,\n            \"country\": \"Liechtenstein\",\n            \"local\": \"Lake Loganport\",\n            \"month\": 6,\n            \"year\": 2023,\n            \"url\": \"http://zakary.biz\"\n        },\n        {\n            \"id\": \"8b780255-42b6-43fc-9f88-ef1d06582303\",\n            \"createdAt\": \"2023-06-02T21:12:48.140Z\",\n            \"active\": true,\n            \"country\": \"Saint Martin\",\n            \"local\": \"East Mafalda\",\n            \"month\": 6,\n            \"year\": 2022,\n            \"url\": \"https://madalyn.org\"\n        },\n        {\n            \"id\": \"3d9d30c7-8002-4463-9dba-a2fdea46bb28\",\n            \"createdAt\": \"2023-06-02T21:13:00.788Z\",\n            \"active\": true,\n            \"country\": \"Liberia\",\n            \"local\": \"South Kitty\",\n            \"month\": 6,\n            \"year\": 2022,\n            \"url\": \"https://eugene.org\"\n        },\n        {\n            \"id\": \"71a068d6-5a3a-48f6-bd29-4f35acc128ed\",\n            \"createdAt\": \"2023-06-02T21:13:11.449Z\",\n            \"active\": true,\n            \"country\": \"Seychelles\",\n            \"local\": \"Americashire\",\n            \"month\": 6,\n            \"year\": 2023,\n            \"url\": \"http://marilie.info\"\n        },\n        {\n            \"id\": \"5e9299d8-dad2-45f8-8b91-ff3fb32ba3c2\",\n            \"createdAt\": \"2023-06-02T21:13:16.202Z\",\n            \"active\": true,\n            \"country\": \"Angola\",\n            \"local\": \"North Jakobbury\",\n            \"month\": 5,\n            \"year\": 2023,\n            \"url\": \"http://clay.name\"\n        },\n        {\n            \"id\": \"065582ae-cb6a-4425-8260-7e1c2534c448\",\n            \"createdAt\": \"2023-06-02T21:13:22.667Z\",\n            \"active\": true,\n            \"country\": \"Mauritania\",\n            \"local\": \"Pflugerville\",\n            \"month\": 4,\n            \"year\": 2023,\n            \"url\": \"http://victoria.net\"\n        },\n        {\n            \"id\": \"a335c00e-ea54-474f-9461-2f872f32b939\",\n            \"createdAt\": \"2023-06-02T21:13:52.691Z\",\n            \"active\": true,\n            \"country\": \"Costa Rica\",\n            \"local\": \"McClurehaven\",\n            \"month\": 6,\n            \"year\": 2023,\n            \"url\": \"http://olin.org\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete location",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/locations/:locationId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"locations",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "4512c1c2-2c92-4b01-962e-95081a2dbd95"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "b85aa1f6-6b9a-4193-8467-a5b12908cfe2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e-2bN0f3QTUBUMx8fIJjQmi+VOyQA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:29:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Location deleted\"\n}"
+						},
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/locations/:locationId",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"locations",
+										":locationId"
+									],
+									"variable": [
+										{
+											"key": "locationId",
+											"value": "b85aa1f6-6b9a-4193-8467-a5b12908cfe1"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-FiYn+fnHQdSUmOdGD6qdoUtvfEE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Jun 2023 22:29:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"Location not found\",\n    \"error\": \"Not Found\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
