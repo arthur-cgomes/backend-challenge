@@ -182,5 +182,24 @@ describe('LocationService', () => {
     });
   });
 
-  //Final
+  describe('deleteLocation', () => {
+    it('Should successfully delete a location', async () => {
+      repositoryMock.findOne = jest.fn().mockReturnValue(location);
+      repositoryMock.remove = jest.fn();
+
+      const result = await service.deleteLocation(location.id);
+
+      expect(result).toStrictEqual('Location deleted');
+    });
+
+    it('Should throw a NotFoundException if location does not exist', async () => {
+      const error = new NotFoundException('Location not found');
+
+      repositoryMock.findOne = jest.fn();
+
+      await expect(service.deleteLocation(location.id)).rejects.toStrictEqual(
+        error,
+      );
+    });
+  });
 });
