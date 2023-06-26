@@ -12,7 +12,7 @@
   - [Contato](#contato)
 
 ## Descrição
-O desafio se consiste em desenvolver uma API Rest para alimentar o frontend abaixo:
+O desafio se consiste em desenvolver uma API Rest para alimentar o front-end abaixo:
 
 <img src="img/challenge.png">
 
@@ -70,6 +70,6 @@ Entre em contato [aqui](https://github.com/arthur-cgomes) para suporte.
 - Desenvolvedor - [Arthur Gomes](https://github.com/arthur-cgomes)
 - Linkedin - [Perfil profissional](https://www.linkedin.com/in/arthur-gomes-701549193/)
 
-## License
+## Licença
 
-UNLICENSED
+SEM LICENÇA
