@@ -79,7 +79,7 @@ describe('LocationService', () => {
       expect(repositoryMock.create).not.toHaveBeenCalled();
     });
 
-    it('Should throw a BadRequestException if date is in the past', async () => {
+    it('Should throw BadRequestException if date is in the past', async () => {
       const error = new BadRequestException(
         'Invalid date. Please provide a month in the future.',
       );
